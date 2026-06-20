@@ -4,47 +4,44 @@ from app.split_integer import split_integer
 def test_sum_of_the_parts_should_be_equal_to_value() -> None:
     value = 32
     number_of_parts = 6
-    result = split_integer(value, number_of_parts)
-    assert sum(result) == value
+    assert sum(split_integer(value, number_of_parts)) == value
 
 
 def test_should_return_exact_number_of_parts() -> None:
     value = 6
     number_of_parts = 2
-    result = split_integer(value, number_of_parts)
-    assert result == [3, 3]
+    assert split_integer(value, number_of_parts) == [3, 3]
 
 
 def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
     value = 8
     number_of_parts = 1
-    result = split_integer(value, number_of_parts)
-    assert result == [8]
+    assert split_integer(value, number_of_parts) == [8]
 
 
 def test_parts_should_be_sorted_when_they_are_not_equal() -> None:
     value = 17
     number_of_parts = 4
-    result = split_integer(value, number_of_parts)
-    assert result == sorted(result)
+    assert split_integer(value, number_of_parts) == sorted(split_integer(value, number_of_parts))
 
 
 def test_should_add_zeros_when_value_is_less_than_number_of_parts() -> None:
     value = 2
     number_of_parts = 3
-    result = split_integer(value, number_of_parts)
-    assert result == [0, 1, 1]
+    assert split_integer(value, number_of_parts) == [0, 1, 1]
 
 
-def test_len_of_the_parts_should_be_equal_to_value() -> None:
+def test_len_of_the_parts_should_be_equal_to_number_of_parts() -> None:
     value = 32
     number_of_parts = 6
-    result = split_integer(value, number_of_parts)
-    assert len(result) == number_of_parts
+    assert len(split_integer(value, number_of_parts)) == number_of_parts
 
 
 def test_difference_between_the_largest_and_the_smallest_part_is_one() -> None:
     value = 32
     number_of_parts = 6
-    result = split_integer(value, number_of_parts)
-    assert max(result) - min(result) <= 1
+    assert (
+            max(split_integer(value, number_of_parts))
+            - min(split_integer(value, number_of_parts))
+            <= 1
+    )
